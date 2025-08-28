@@ -1,0 +1,46 @@
+import 'package:floor/floor.dart';
+
+class Invoice {
+  String id;
+  String customerId;
+  String customerName;
+  double amount;
+  DateTime invoiceDate;
+  DateTime dueDate;
+  String? status;
+
+
+
+  Invoice({
+  this.id = '',
+  required this.customerId,
+  required this.customerName,
+  required this.amount,
+  required this.invoiceDate,
+  required this.dueDate,
+  });
+
+  factory Invoice.fromJson(Map<String, dynamic> map) {
+    return Invoice(
+      id: map['id'],
+      customerId: map['customerId'],
+      customerName: map['customerName'],
+      amount: map['amount'],
+      invoiceDate: DateTime.parse(map['invoiceDate']),
+      dueDate: DateTime.parse(map['dueDate']),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+  return {
+    'id': id,
+    'customerId': customerId,
+    'customerName': customerName,
+    'amount': amount,
+    'invoiceDate': invoiceDate.toIso8601String(), // Convert to ISO 8601 string
+    'dueDate': dueDate.toIso8601String(), // Convert to ISO 8601 string
+    'status': status, // Add status if needed
+  };
+}
+
+} 
